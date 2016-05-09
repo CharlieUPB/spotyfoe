@@ -43,11 +43,13 @@ BUSCA LA CANCION DE TU PREFERENCIA
 </div>
 <div class = "resultados">
 	<?php
+
 	include ("consultasSQL.php");
 
-
 	if (empty($_GET['userID'])) {
-		header("Location:manejoUsuarios/iniciarSesion.php");
+		$pagina = "buscador.php";
+		header("Location:manejoUsuarios/iniciarSesion.php?link=$pagina");
+
 	}
 	$codUsuario = $_GET['userID'];
 

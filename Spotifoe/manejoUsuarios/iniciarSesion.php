@@ -84,10 +84,17 @@
 		return $data;
 	}
 	$errorInicio = "";
+	if (empty($_GET['link'])) {
+		echo "entre directo a iniciar sesion";
+	}
+
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		include("../connection.php");
 
-		
+		$pagina = $_GET['link'];
+		echo "La pagina es".$pagina;
+
+
 		if(isset($_POST['Usuario']) && !empty($_POST['Usuario']) 
 			&& isset($_POST['Password']) && !empty($_POST['Password']))
 		{
@@ -106,7 +113,7 @@
 			if(mysqli_num_rows($query) == 1)
 			{
 				//echo "Iniciaste Sesion";
-				header("Location:../mostrarLista.php?userID=$codigoUsuario");
+				header("Location:../".$pagina."?userID=$codigoUsuario");
 
 			}
 			else
