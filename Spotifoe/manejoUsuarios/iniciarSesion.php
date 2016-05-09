@@ -113,7 +113,9 @@
 			if(mysqli_num_rows($query) == 1)
 			{
 				//echo "Iniciaste Sesion";
-				header("Location:../".$pagina."?userID=$codigoUsuario");
+
+
+				header("Location:../buscador.php?userID=$codigoUsuario");
 
 			}
 			else

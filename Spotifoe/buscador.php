@@ -21,8 +21,9 @@
 	}
 	</style>
 </head>
-<body 
-class = "fondo";>
+
+<body class = "fondo";>
+
 <?php
 $codUsuario = $_GET['userID'];		
 ?>

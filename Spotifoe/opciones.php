@@ -23,8 +23,8 @@
 	$codUsuario = $_GET['userID'];
 	$conn = connect("Musica");
 
-	echo $codUsuario;
-	echo $codCancion;
+	//echo $codUsuario;
+	//echo $codCancion;
 
 
 	$queryAlbum = "SELECT album.nombre from cancion,album where album.Cod_album = (select Cod_album from cancion where Cod_cancion = ".$codCancion.")";
@@ -50,7 +50,7 @@
 	$resulContar = mysqli_query($conn, $queryContar);
 	$arrayContar = mysqli_fetch_array($resulContar);
 	
-	///mysqli_close($conn);	
+	//mysqli_close($conn);	
 		
 ?>
 
@@ -95,6 +95,9 @@
 			agregadoEnBD = "no";
 		}
 	}
+	<?php
+		mysqli_close($conexion);
+	?>
 
 </script>
 
@@ -107,8 +110,7 @@
   <li><a href="#">Géneros</a></li>
 </ul>
 
-<div style="margin-left:16%;padding:1px 16px;height:1000px; background-color:black">
-  
+<div style="margin-left:18%;padding:1px 16px;height:800px; background-color:black">
     <div id="header">
 		<p id="titulo">Escucha La Cancion Perfecta</p>
 		<br>
@@ -127,6 +129,7 @@
 							while ($arrayArtista = mysqli_fetch_array($resulArtista)) {
 								echo $arrayArtista["nombre"]." ";
 							}
+							mysqli_close($conn);
 						?>
 						</h2> 
 					   <h3><?php echo $albumName = $arrayAlbum["nombre"]?></h3> 
@@ -147,12 +150,24 @@
   			</div>
 		</div>
 		<div class="imagenPlay">
-			<a href='reproductorMusica/interfazReproductor.php?codCanc= <?php echo $codCancion; ?> &userID= <?php echo $codUsuario?>'>
+			<a href='opciones.php?codCanc= <?php echo $codCancion; ?> &userID= <?php echo $codUsuario;?> &pres=1'>
 				<img src="images/play.png" alt="Boton reproductor" width="55px" height="50px" border="0">
 			</a>
 		</div>
 	</form>
-	</div>
+</div>
+
+<?php
+	if (!empty($_GET['pres'])) {
+		?>
+		<div style="margin-left:18%;margin-top:800px;">
+		<?php
+			include("reproductorMusica/interfazReproductor.php");
+		?>
+		</div>
+		<?php
+	}
+?>
 
 </body>
 </html>
